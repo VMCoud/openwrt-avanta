@@ -45,12 +45,15 @@ jobs:
         run: |
           echo "CONFIG_TARGET_avanta=y" > .config
           echo "CONFIG_TARGET_avanta_generic=y" >> .config
+          echo "CONFIG_PACKAGE_luci-ssl-mbedtls=y" >> .config
+          make defconfig
+          # Target Profile is a Kconfig choice (single-select): defconfig
+          # normalises multiple DEVICE_* flags to one. Write the 4 device
+          # flags AFTER defconfig so `make` builds all of them.
           echo "CONFIG_TARGET_avanta_generic_DEVICE_zte_f420-f620=y" >> .config
           echo "CONFIG_TARGET_avanta_generic_DEVICE_zte_f460-f660=y" >> .config
           echo "CONFIG_TARGET_avanta_generic_DEVICE_zte_f460-f660-lp=y" >> .config
           echo "CONFIG_TARGET_avanta_generic_DEVICE_hqw_hgg420n=y" >> .config
-          echo "CONFIG_PACKAGE_luci-ssl-mbedtls=y" >> .config
-          make defconfig
 
       - name: Build firmware
         run: make -j$(nproc) V=s
