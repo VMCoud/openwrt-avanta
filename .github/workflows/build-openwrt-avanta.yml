@@ -45,6 +45,10 @@ jobs:
         run: |
           echo "CONFIG_TARGET_avanta=y" > .config
           echo "CONFIG_TARGET_avanta_generic=y" >> .config
+          echo "CONFIG_TARGET_avanta_generic_DEVICE_zte_f420-f620=y" >> .config
+          echo "CONFIG_TARGET_avanta_generic_DEVICE_zte_f460-f660=y" >> .config
+          echo "CONFIG_TARGET_avanta_generic_DEVICE_zte_f460-f660-lp=y" >> .config
+          echo "CONFIG_TARGET_avanta_generic_DEVICE_hqw_hgg420n=y" >> .config
           echo "CONFIG_PACKAGE_luci-ssl-mbedtls=y" >> .config
           make defconfig
 
